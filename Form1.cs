@@ -10,12 +10,22 @@ using System.Windows.Forms;
 
 namespace Navegador
 {
+
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
+            this.Resize += new System.EventHandler(this.Form_Resize);
         }
+
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            webView21.Size = this.ClientSize - new System.Drawing.Size(webView21.Location);
+            button1.Left = this.ClientSize.Width - button1.Width;
+            comboBox1.Width = button1.Left - comboBox1.Left;
+        }
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -31,45 +41,47 @@ namespace Navegador
 
         private void homeToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            webBrowser1.GoHome();
+            //webBrowser1.GoHome();
         }
 
         private void goForwardToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            webBrowser1.GoForward();
+            //webBrowser1.GoForward();
         }
 
         private void goBackToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            webBrowser1.GoBack();
+            //webBrowser1.GoBack();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            string Url = comboBox1.Text.Trim();
-
-            if (!Url.Contains("."))
+            if ((webView21 != null && webView21.CoreWebView2 != null))
             {
-                //Cuando no tiene punto
-                Url = "https://www.google.com/search?q=" + Url.Replace(" ", "+");
-            }
-            else
-            {
-                //CON punto
-                if (Url.Contains("https://") || Url.Contains("http://"))
+
+                string Url = comboBox1.Text.Trim();
+
+                if (!Url.Contains("."))
                 {
-
-                    //No se hacen cambios
+                    //Cuando no tiene punto
+                    Url = "https://www.google.com/search?q=" + Url.Replace(" ", "+");
                 }
                 else
                 {
-                    Url = "https://" + Url;
+                    //CON punto
+                    if (Url.Contains("https://") || Url.Contains("http://"))
+                    {
+
+                        //No se hacen cambios
+                    }
+                    else
+                    {
+                        Url = "https://" + Url;
+                    }
                 }
+
+                webView21.CoreWebView2.Navigate(Url);
             }
-
-            webBrowser1.Navigate(new Uri(Url));
-
 
             /*
             string Url = comboBox1.Text;
@@ -90,6 +102,14 @@ namespace Navegador
 
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void webView21_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

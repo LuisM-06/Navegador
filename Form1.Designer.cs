@@ -35,8 +35,9 @@
             this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.anteriorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.siguienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -47,13 +48,13 @@
             "https://www.google.com"});
             this.comboBox1.Location = new System.Drawing.Point(12, 48);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(717, 24);
+            this.comboBox1.Size = new System.Drawing.Size(818, 24);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(754, 49);
+            this.button1.Location = new System.Drawing.Point(859, 49);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(62, 23);
             this.button1.TabIndex = 1;
@@ -68,7 +69,7 @@
             this.navegarToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(847, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(950, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -86,36 +87,40 @@
             // homeToolStripMenuItem
             // 
             this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-            this.homeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.homeToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.homeToolStripMenuItem.Text = "Home";
             // 
             // anteriorToolStripMenuItem
             // 
             this.anteriorToolStripMenuItem.Name = "anteriorToolStripMenuItem";
-            this.anteriorToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.anteriorToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.anteriorToolStripMenuItem.Text = "Anterior";
             // 
             // siguienteToolStripMenuItem
             // 
             this.siguienteToolStripMenuItem.Name = "siguienteToolStripMenuItem";
-            this.siguienteToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.siguienteToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.siguienteToolStripMenuItem.Text = "Siguiente";
             // 
-            // webBrowser1
+            // webView21
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(12, 94);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(804, 334);
-            this.webBrowser1.TabIndex = 3;
-            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
+            this.webView21.AllowExternalDrop = true;
+            this.webView21.CreationProperties = null;
+            this.webView21.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.webView21.Location = new System.Drawing.Point(12, 100);
+            this.webView21.Name = "webView21";
+            this.webView21.Size = new System.Drawing.Size(909, 356);
+            this.webView21.Source = new System.Uri("https://www.umes.edu.gt/", System.UriKind.Absolute);
+            this.webView21.TabIndex = 3;
+            this.webView21.ZoomFactor = 1D;
+            this.webView21.Click += new System.EventHandler(this.webView21_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(847, 450);
-            this.Controls.Add(this.webBrowser1);
+            this.ClientSize = new System.Drawing.Size(950, 480);
+            this.Controls.Add(this.webView21);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.menuStrip1);
@@ -125,6 +130,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -139,7 +145,7 @@
         private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem anteriorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem siguienteToolStripMenuItem;
-        private System.Windows.Forms.WebBrowser webBrowser1;
+        private Microsoft.Web.WebView2.WinForms.WebView2 webView21;
     }
 }
 
