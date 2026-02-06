@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,10 +15,14 @@ namespace Navegador
 
     public partial class Form1 : Form
     {
+
+        private String historialPath = "historial.txt";
+
         public Form1()
         {
             InitializeComponent();
             this.Resize += new System.EventHandler(this.Form_Resize);
+
         }
 
         private void Form_Resize(object sender, EventArgs e)
@@ -27,15 +33,18 @@ namespace Navegador
         }
 
 
+        //Leer historial y cambiar al combo
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            LeerHistorial();
+        }
+
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
 
         private void navegarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
         {
         }
 
@@ -71,7 +80,6 @@ namespace Navegador
                     //CON punto
                     if (Url.Contains("https://") || Url.Contains("http://"))
                     {
-
                         //No se hacen cambios
                     }
                     else
@@ -81,9 +89,15 @@ namespace Navegador
                 }
 
                 webView21.CoreWebView2.Navigate(Url);
+
+                GuardarHistorial(Url);
+                LeerHistorial();
+                comboBox1.Text = Url;
             }
 
             /*
+             * 
+             * 
             string Url = comboBox1.Text;
 
             if( (Url.Contains("https://")) || (Url.Contains("http://")) ){
@@ -96,6 +110,66 @@ namespace Navegador
             }
             */
         }
+
+
+        //Para guardar
+        private void GuardarHistorial(String texto)
+        {
+            FileStream stream = new FileStream(historialPath, FileMode.Append, FileAccess.Write);
+            StreamWriter writer = new StreamWriter(stream);
+            writer.WriteLine(texto);
+            writer.Close();
+
+
+            RecortarHistorialA10();
+        }
+
+        private void LeerHistorial()
+        {
+            comboBox1.Items.Clear();
+
+            if (!File.Exists(historialPath))
+                return;
+
+            string[] lineas = File.ReadAllLines(historialPath);
+
+        
+            int inicio = Math.Max(0, lineas.Length - 10);
+
+
+            for (int i = inicio; i < lineas.Length; i++)
+            {
+                string linea = lineas[i].Trim();
+                if (linea != "")
+                {
+                    comboBox1.Items.Add(linea);
+                }
+            }
+
+        }
+
+        private void RecortarHistorialA10()
+        {
+            if (!File.Exists(historialPath))
+                return;
+
+            List<string> lineas = File.ReadAllLines(historialPath)
+                                      .Where(l => !string.IsNullOrWhiteSpace(l))
+                                      .ToList();
+
+          
+            List<string> sinDup = new List<string>();
+            foreach (string l in lineas) { sinDup.Remove(l); sinDup.Add(l); }
+            lineas = sinDup;
+
+            if (lineas.Count > 10)
+            {
+                lineas = lineas.Skip(lineas.Count - 10).ToList();
+                File.WriteAllLines(historialPath, lineas);
+            }
+        }
+
+
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {

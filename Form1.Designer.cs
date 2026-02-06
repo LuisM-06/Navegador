@@ -69,7 +69,7 @@
             this.navegarToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(950, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(950, 30);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -80,7 +80,7 @@
             this.anteriorToolStripMenuItem,
             this.siguienteToolStripMenuItem});
             this.navegarToolStripMenuItem.Name = "navegarToolStripMenuItem";
-            this.navegarToolStripMenuItem.Size = new System.Drawing.Size(79, 24);
+            this.navegarToolStripMenuItem.Size = new System.Drawing.Size(79, 26);
             this.navegarToolStripMenuItem.Text = "Navegar";
             this.navegarToolStripMenuItem.Click += new System.EventHandler(this.navegarToolStripMenuItem_Click);
             // 
